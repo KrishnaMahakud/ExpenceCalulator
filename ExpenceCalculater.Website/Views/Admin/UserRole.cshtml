@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "UserRole";
+    Layout = "~/Views/_AdminMasterLayoutPage.cshtml";
+}
+
+
+
+<div class="row">
+    <!-- Page Header -->
+    <div class="col-lg-12">
+
+    </div>
+    <!--End Page Header -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Assign User Roles</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                User Name
+            </div>
+            <div class="col-lg-6">
+                <div id="comboBoxUsers" ></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Roles
+            </div>
+            <div class="col-lg-6">
+                <div id="dropDownRoles" ></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" class="btn btn-danger pull-right" value="Add" id="assignRoleBtn" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-8">
+        <br><br>
+        <div id="userRoleGrid"></div>
+    </div>
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        BindRoles();
+        BindUsers();
+        PopulateuserRoleGrid();
+        $("#assignRoleBtn").click(function () {
+
+            var userItem = $("#comboBoxUsers").jqxComboBox('getSelectedItem');
+            var roleItem = $("#dropDownRoles").jqxDropDownList('getSelectedItem');
+            var userId = userItem.value;
+            var roleId = roleItem.value;
+
+            AddUserRole(userId, roleId);
+        });
+
+    });
+
+    function BindRoles() {
+        var url = WebAPIURL + "api/Role/GetAll";
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'RoleName' },
+                { name: 'RoleId' }
+            ],
+            url: url,
+
+            async: true
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        // Create a jqxDropDownList
+        $("#dropDownRoles").jqxDropDownList({
+            selectedIndex: 0, source: dataAdapter, displayMember: "RoleName", valueMember: "RoleId", width: 200, height: 30,
+        });
+
+
+    }
+
+    function BindUsers() {
+        var url = WebAPIURL + "api/Userdata/GetAll";
+        // prepare the data
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'UserName' },
+                { name: 'UserId' }
+            ],
+            url: url,
+
+            async: false
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        // Create a jqxComboBox
+        $("#comboBoxUsers").jqxComboBox({ selectedIndex: 0, source: dataAdapter, displayMember: "UserName", valueMember: "UserId", width: 200, height: 30, });
+       
+    }
+    function AddUserRole(userId, roleId) {
+
+        var postData = {
+            "UserId": userId,
+            "RoleId": roleId
+        };
+
+        $.ajax({
+            type: "POST",
+            url: WebAPIURL + 'api/UserRole/Add',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(postData),
+            dataType: "json",
+            success: function (msg) {
+                if (msg == 1)
+                {
+                    alert("Role Assigned Successfully");
+                    window.location.reload();}
+                
+            },
+            error: function (req, status, error) {
+                alert("Error try again");
+            }
+        });
+    }
+    function PopulateuserRoleGrid() {
+        var url = WebAPIURL + "api/UserRole/GetAll";
+        // prepare the data
+           var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'UserRoleId', type: 'int' },
+                { name: 'UserName'},
+                { name: 'RoleName'}
+
+            ],
+            id: 'Id',
+            url: url,
+            root: 'data'
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+
+        $("#userRoleGrid").jqxGrid(
+            {
+                width: '100%',
+                source: dataAdapter,
+                columnsresize: true,
+                columns: [
+                    { text: 'Id', dataField: 'UserRoleId'},
+                    { text: 'User', dataField: 'UserName'},
+                    { text: 'Role', dataField: 'RoleName' },
+
+                ]
+            });
+    }
+</script>
+
+

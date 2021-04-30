@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+    <link href="~/Style/LoginStyle.css" rel="stylesheet" />
+    <script src="~/Script/jquery/jquery.min.js"></script>
+    <script src="~/Script/prefixfree.js"></script>
+
+
+    <script>
+        var WebAPIURL = '@System.Configuration.ConfigurationManager.AppSettings["WebAPIURL"]';
+    </script>
+</head>
+
+
+
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "UserDetails";
+    Layout = "~/Views/_AdminMasterLayoutPage.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <br><br>
+                <h2>User Input Form</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Address1
+            </div>
+            <div class="col-lg-6" style="padding:2px">
+                <input id="adress1" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                Address2
+            </div>
+            <div class="col-lg-6" style="padding:2px">
+                <input id="address2" />
+            </div>
+        </div>
+  
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" class="btn btn-success pull-right" value="Add" id="userBtnAdd" />
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <br>
+        <br>
+        <br>
+        <div id="userdetailGrid"></div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        alert('ready');
+        var url = WebAPIURL + "api/UserDetails/GetAll";
+        // prepare the data
+
+        var source =
+        {
+            datatype: "json",
+            datafields: [
+                { name: 'UserDetailId', type: 'int' },
+                { name: 'UserId' },
+                { name: 'Address1' },
+                { name: 'Address2' },
+                { name: 'CityId'},
+                { name: 'IsActive', type: 'bool' }
+            ],
+            id: 'Id',
+            url: url,
+            root: 'data'
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+
+        $("#userdetailGrid").jqxGrid(
+            {
+                width: '100%',
+                source: dataAdapter,
+                columnsresize: true,
+                columns: [
+                    { text: 'Id', dataField: 'UserDetailsId', width: 200},
+                    { text: 'UserId', dataField: 'UserId', width: 200},
+                    { text: 'Address1', dataField: 'Address1', width: 180 },
+                    { text: 'Address2', dataField: 'Address2', width: 180 },
+                    { text: 'CityId', dataField: 'CityId', width: 180 },
+                    { text: 'IsActive', dataField: 'IsActive'}
+                ]
+            });
+    });
+
+        $("#userBtnAdd").click(function () {
+
+            var Address1 = $("#address1").val();
+    var Address2 = $("#address2").val();
+
+    var postData = {
+        "Address1": Address1,
+        "Address2": Address2
+    };
+
+    $.ajax({
+        type: "POST",
+        url: WebAPIURL + 'api/UserDetails/Add',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(postData),
+        dataType: "json",
+        success: function (msg) {
+
+            alert(msg);
+            window.location.reload();
+        },
+        error: function (req, status, error) {
+            alert("Error try again");
+        }
+    });
+
+        });
+
+
+
+</script>
