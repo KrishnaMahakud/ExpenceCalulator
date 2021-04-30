@@ -42,6 +42,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -795,7 +801,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <None Include="packages.config" />
-    <Content Include="Views\_AdminMasterLayoutPage.cshtml" />
+    <Content Include="Views\Admin\AdminMasterLayoutPage.cshtml" />
     <Content Include="Script\jqwidgets\styles\font\jqx-icons.eot" />
     <Content Include="Script\jqwidgets\styles\font\jqx-icons.ttf" />
     <Content Include="Script\jqwidgets\styles\font\jqx-icons.woff" />
@@ -809,7 +815,7 @@
     <Content Include="Views\Admin\Role.cshtml" />
     <Content Include="Views\Admin\FrequencyType.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\_LoginMasterLayoutPage.cshtml" />
+    <Content Include="Views\Login\LoginMasterLayoutPage.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\UserMasterLayoutPage.cshtml" />
     <Content Include="Views\User\AddSavings.cshtml" />
@@ -828,6 +834,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExpenceCalculater.Data\ExpenceCalculator.Data.csproj">
+      <Project>{CB039CB1-648E-4FD1-BC15-9A5AAEA10F3B}</Project>
+      <Name>ExpenceCalculator.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExpenceCalculater.WebAPI\ExpenceCalculator.WebAPI.csproj">
+      <Project>{269d9895-d50d-4ffc-8c21-d1a150d95c31}</Project>
+      <Name>ExpenceCalculator.WebAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

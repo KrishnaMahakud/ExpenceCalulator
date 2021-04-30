@@ -1,7 +1,7 @@
-﻿
+﻿@model ExpenceCalculater.Data.User
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/_LoginMasterLayoutPage.cshtml";
+    Layout = "~/Views/Login/LoginMasterLayoutPage.cshtml";
 }
 
 <div class="body"></div>
@@ -10,56 +10,72 @@
     <div><span><strong>Login</strong></span></div>
 </div>
 <br>
-<div class="login">
-    <input type="text" placeholder="username" name="user" id="txtUserName"><br>
-    <input type="password" placeholder="password" name="password" id="txtPassword"><br>
-    <input type="button" value="Login" id="loginBtn"><br>
-    <h4 align="center"><a href="/Login/ResetPassword">Reset password</a></h4>
-    @*<input type="button" value="Reset Password" id="btnResetPassword">*@
-</div>
+@using (Html.BeginForm("LoginValidate", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="login">
+        <div>
+            @*<input type="text" placeholder="username" name="user" id="txtUserName"><br>*@
+            @Html.LabelFor(model => model.UserName)
 
-<script>
+            @Html.TextBoxFor(model => model.UserName, new { placeholder = "Enter UserName", @class = "input" })
+            @Html.ValidationMessageFor(model => model.UserName)
+
+        </div>
+
+        <div>
+            @*<input type="password" placeholder="password" name="password" id="txtPassword"><br>*@
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { placeholder = "Enter Password", @class = "input" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <input type="button" value="Login" id="loginBtn"><br>
+        <h4 align="center"><a href="/Login/ResetPassword">Reset password</a></h4>
+        @*<input type="button" value="Reset Password" id="btnResetPassword">*@
+    </div>
+}
+    @*<script>
 
 
 
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $("#loginBtn").click(function () {
-            var postData =
-            {
-                "UserName" : $("#txtUserName").val(),
-                "Password": $("#txtPassword").val()
-            };
+            $("#loginBtn").click(function () {
+                var postData =
+                {
+                    "UserName": $("#txtUserName").val(),
+                    "Password": $("#txtPassword").val()
+                };
 
 
-            console.log(postData);
-            console.log(JSON.stringify(postData));
-             $.ajax({
-                type: "POST",
-                 url: WebAPIURL + 'api/UserData/Validate',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(postData),
-                dataType: "json",
-                success: function (msg) {
+                console.log(postData);
+                console.log(JSON.stringify(postData));
+                $.ajax({
+                    type: "POST",
+                    url: WebAPIURL + 'api/UserData/Validate',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(postData),
+                    dataType: "json",
+                    success: function (msg) {
 
-                    if (msg == null) {
-                        window.location.href = "/Login/Failure";
+                        if (msg == null) {
+                            window.location.href = "/Login/Failure";
 
+                        }
+                        else {
+                            window.location.href = "/Admin/Index";
+                        }
+                    },
+                    error: function (req, status, error) {
+                        alert("Error try again");
                     }
-                    else {
-                        window.location.href = "/Admin/Index";
-                    }
-                },
-                error: function (req, status, error) {
-                   alert("Error try again");
-                }
+                });
+
             });
 
+            $("#btnResetPassword").click(function () {
+                window.location.href = "/Login/ResetPassword";
+            });
         });
-
-        $("#btnResetPassword").click(function () {
-            window.location.href = "/Login/ResetPassword";
-        });
-    });
-</script>
+    </script>*@
