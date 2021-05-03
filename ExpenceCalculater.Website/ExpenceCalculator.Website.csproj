@@ -837,12 +837,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ExpenceCalculater.Data\ExpenceCalculator.Data.csproj">
-      <Project>{CB039CB1-648E-4FD1-BC15-9A5AAEA10F3B}</Project>
+      <Project>{cb039cb1-648e-4fd1-bc15-9a5aaea10f3b}</Project>
       <Name>ExpenceCalculator.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExpenceCalculater.WebAPI\ExpenceCalculator.WebAPI.csproj">
-      <Project>{269d9895-d50d-4ffc-8c21-d1a150d95c31}</Project>
-      <Name>ExpenceCalculator.WebAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -22,7 +22,7 @@ namespace ExpenceCalculater.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (Expense_calculatorEntities db = new Expense_calculatorEntities())
+                using (ExpenseCalculatorEntities db = new ExpenseCalculatorEntities())
                 {
                     var obj = db.Users.Where(a => a.UserName.Equals(objUser.UserName) && a.Password.Equals(objUser.Password)).FirstOrDefault();
                     if (obj != null)

@@ -19,9 +19,10 @@ namespace ExpenceCalculater.Data
         public Nullable<int> ManagementTypeListId { get; set; }
         public string Amount { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         public virtual ManagementTypeList ManagementTypeList { get; set; }

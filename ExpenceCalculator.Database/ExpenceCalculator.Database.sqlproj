@@ -62,17 +62,17 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\UserDetails.sql" />
-    <Build Include="dbo\Tables\Role.sql" />
-    <Build Include="dbo\Tables\UserRole.sql" />
-    <Build Include="dbo\Tables\ManagementType.sql" />
-    <Build Include="dbo\Tables\UserLedger.sql" />
-    <Build Include="dbo\Tables\ManagementTypeList.sql" />
     <Build Include="dbo\Tables\City.sql" />
-    <Build Include="dbo\Tables\State.sql" />
     <Build Include="dbo\Tables\Country.sql" />
     <Build Include="dbo\Tables\FrequencyType.sql" />
+    <Build Include="dbo\Tables\ManagementType.sql" />
+    <Build Include="dbo\Tables\ManagementTypeList.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\State.sql" />
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\UserDetails.sql" />
+    <Build Include="dbo\Tables\UserLedger.sql" />
+    <Build Include="dbo\Tables\UserRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

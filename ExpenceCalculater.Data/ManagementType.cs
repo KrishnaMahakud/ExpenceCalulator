@@ -22,9 +22,10 @@ namespace ExpenceCalculater.Data
     
         public int ManagementTypeId { get; set; }
         public string Name { get; set; }
-        public string CreatedBy { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

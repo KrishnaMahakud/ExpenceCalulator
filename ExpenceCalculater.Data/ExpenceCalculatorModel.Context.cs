@@ -13,10 +13,10 @@ namespace ExpenceCalculater.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Expense_calculatorEntities : DbContext
+    public partial class ExpenseCalculatorEntities : DbContext
     {
-        public Expense_calculatorEntities()
-            : base("name=Expense_calculatorEntities")
+        public ExpenseCalculatorEntities()
+            : base("name=ExpenseCalculatorEntities")
         {
         }
     

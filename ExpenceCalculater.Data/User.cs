@@ -27,9 +27,10 @@ namespace ExpenceCalculater.Data
         public string Password { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string Gender { get; set; }
-        public string CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedON { get; set; }
-        public string UpdatedBy { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

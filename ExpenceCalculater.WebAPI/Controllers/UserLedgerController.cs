@@ -10,7 +10,7 @@ namespace ExpenceCalculater.WebAPI.Controllers
 {
     public class UserLedgerController : ApiController
     {
-        private Expense_calculatorEntities db = new Expense_calculatorEntities();
+        private ExpenseCalculatorEntities db = new ExpenseCalculatorEntities();
 
 
         [HttpGet]

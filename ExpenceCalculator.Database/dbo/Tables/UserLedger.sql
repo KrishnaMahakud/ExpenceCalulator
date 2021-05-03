@@ -4,6 +4,11 @@
     [ManagementTypeListId] INT           NULL,
     [Amount]               NVARCHAR (50) NULL,
     [Date]                 DATE          NULL,
+    [IsActive]             BIT           NULL,
+    [CreatedBy]            INT           NULL,
+    [CreatedOn]            DATETIME      NULL,
+    [UpdateBy]             INT           NULL,
+    [UpdatedOn]            DATETIME      NULL,
     CONSTRAINT [PK_UserLedger] PRIMARY KEY CLUSTERED ([UserLedgerId] ASC),
     CONSTRAINT [FK_UserLedger_ManagementTypeList] FOREIGN KEY ([ManagementTypeListId]) REFERENCES [dbo].[ManagementTypeList] ([ManagementTypeLIstId]),
     CONSTRAINT [FK_UserLedger_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId])
